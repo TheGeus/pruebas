@@ -1,1 +1,1 @@
-export const API_URL = process.env(String(REACT_APP_API_URL));
+export const API_URL = String(process.env.REACT_APP_API_URL);

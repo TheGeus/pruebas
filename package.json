@@ -18,6 +18,12 @@
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },
+  "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.1.0",
+    "autoprefixer": "9",
+    "postcss": "7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  },
   "scripts": {
     "start": "craco start",
     "dev": "craco start",
@@ -42,11 +48,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss7-compat": "^2.1.0",
-    "autoprefixer": "9",
-    "postcss": "7",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }
