@@ -36,25 +36,35 @@ class Sudoku{
         $distinto = true;
         for($i = 0; $i < self::MAX; $i++){
             for($j = 0; $j < self::MAX; $j++){
-                if($i != 0 && $j != 0){
+                if($i == 0 and $j == 0){
+                    echo "contador: ".$cona." \n";
+                    $total[$i][$j] = mt_rand(1, 9);
+                    //$valor = [];
+                    //$valor[] = $total[$i][$j];
+                    $excluir[$i][$j][0] = $total[$i][$j];
+                }else{
                     $numdefinitivo = null;
-                    while ($distinto != true){
-                        for($a = 0; $a < $i; $a++){
-                            for($b = 0; $b < $j; $b++){
-                                $numero = rand(1, 9);
-                                $excluir[] = $total[$a][$b];
-                                if(!in_array($numero, $excluir)){
-                                    $numdefinitivo = $numero;
-                                    $distinto = false;
-                                }
+                    $contador = 0;
+                    echo "i".$i." j".$j."\n";
+                    while ($distinto){
+                        for($b = 0; $b < self::MAX; $b++){
+                            $numero = mt_rand(1, 9);
+                            echo "posicion i".$i. " posicion j".$j."\n";
+                            echo "posicion x".$i. " posicion y".$b."\n";
+                            print_r($excluir);
+                            if(!in_array($numero, $excluir[$i][$j])){
+                                $numdefinitivo = $numero;
+                                $distinto = false;
+                                $excluir[$i][$j] = array_push($numdefinitivo);
+                                print_r($excluir);
                             }
+                            $distinto = false;
                         }
                     }
-                    print_r($numdefinitivo);
+                    //echo "@salio del while".$i."".$j."@";
                     $total[$i][$j] = $numdefinitivo;
-                    
-                }else{
-                    $total[$i][$j] = rand(1, 9);
+                    $distinto = true;
+                    echo "i".$i." j".$j."\n";
                 }
             }
         }
