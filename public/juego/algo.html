@@ -74,9 +74,20 @@
                 }
             }
 
-            document.body = total;
+            
+            var imprimir = "<table><tbody>";
+            for(var i = 0; i < MAX; i++){
+                imprimir += "<tr>";
+                for(var j = 0; j < MAX; j++){
+                    imprimir += "<td>"+total[i][j]+"</td>";
+                }
+                imprimir += "</tr>";
+            }
+            imprimir += "</tbody></table>";
+            document.getElementById("datos").innerHTML = imprimir;
         }
         </script>
         <button onclick="iniciar()">Empezar</button>
+        <div id="datos"></div>
 </body>
 </html>
