@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function iniciar(){
+            const tablero = [
+                [null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null],
+                [null,null,null,null,null,null,null,null,null]
+            ];
+            const MAX = 9;
+            const total = tablero;
+            const excluir = [[], [], [], [], [], [], [], [], []];
+            const excluir2 = [[], [], [], [], [], [], [], [], []];
+            var contador1 = 0;
+            var contador2 = 0;
+            var ultimoFallo = 0;
+
+            for(var i = 0; i < MAX; i++){
+                for(var j = 0; j < MAX; j++){
+                    if(i == 0 && j == 0){
+                        total[i][j] = Math.floor(Math.random() * 9) + 1;
+                        excluir[0].push(total[i][j]);
+                        excluir2[0].push(total[i][j]);
+                    }else{
+                        var numeroDefinitivo = null;
+                        var distinto = true;
+                        do{
+                            var numero = Math.floor(Math.random() * 9) + 1;
+                            if(excluir[i].includes(numero) == false && excluir2[j].includes(numero) == false){
+                                numeroDefinitivo = numero;
+                                excluir[i].push(numeroDefinitivo);
+                                excluir2[j].push(numeroDefinitivo);
+                                distinto = false;
+                                contador1 = 0;
+                                if(i < ultimoFallo){
+                                    contador2 = 0;
+                                }
+                            }else{
+
+                                contador1++;
+                                if(contador1 == 50){
+                                    var cantidad = excluir[i].length;
+                                    excluir[i] = [];
+                                    for(a = 0; a < cantidad; a++){
+                                        console.log(excluir2[a]);
+                                        excluir2[a].pop();
+                                        console.log("array 2: posicion: x: "+a+" y: "+i+" valor: "+excluir[a][i])
+                                        //alert(excluir2[a][i])
+                                    }
+                                    contador1 = 0;
+                                    j = 0;
+                                    contador2++;
+                                    ultimoFallo = i;
+                                    console.log("eliminado "+contador2+" veces");
+                                }
+                            }
+                        }
+                        while(distinto);
+                        total[i][j] = numeroDefinitivo;
+                    }
+                }
+            }
+
+            document.body = total;
+        }
+        </script>
+        <button onclick="iniciar()">Empezar</button>
+</body>
+</html>
